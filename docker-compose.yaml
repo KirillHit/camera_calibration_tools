@@ -1,0 +1,28 @@
+services:
+  build:
+    build:
+      context: .
+      dockerfile: dockerfile
+    container_name: build_calib_tools
+    volumes:
+      - ./calib_tools:/workspace/calib_tools:ro
+      - ./scripts:/workspace/scripts:ro
+      - ./artifacts:/workspace/artifacts:rw
+    working_dir: /workspace
+    command: ./scripts/build.sh
+  run:
+    build:
+      context: .
+      dockerfile: dockerfile
+    container_name: run_calib_tools
+    volumes:
+      - ./artifacts:/workspace/artifacts:ro
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      - /dev:/dev
+      - /home:/mnt/home:ro
+    environment:
+      - DISPLAY=$DISPLAY
+    network_mode: "host"
+    privileged: true
+    working_dir: /mnt/home
+    command: /workspace/artifacts/linux/install/bin/calib_tools

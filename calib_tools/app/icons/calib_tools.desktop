@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Calib Tools
+Exec=calib_tools
+Icon=calib_tools
+Categories=Development;
+Terminal=false
