@@ -93,6 +93,9 @@ if (WIN32)
         TARGET calib_tools
         OUTPUT_SCRIPT deploy_script
     )
-
     install(SCRIPT ${deploy_script})
+
+    get_filename_component(COMPILER_BIN_DIR "${CMAKE_CXX_COMPILER}" DIRECTORY)
+    file(GLOB THIRD_PARTY_DLLS "${COMPILER_BIN_DIR}/*.dll")
+    install(FILES ${THIRD_PARTY_DLLS} DESTINATION bin)
 endif()

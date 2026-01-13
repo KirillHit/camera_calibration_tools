@@ -50,8 +50,12 @@ CMAKE_ARGS="-S $SRC_DIR -B $BUILD_DIR -G $CMAKE_GEN -DCMAKE_BUILD_TYPE=Release"
 print_section "Configuring project..."
 cmake $CMAKE_ARGS
 
-print_section "Building lupdate..."
-cmake --build "$BUILD_DIR" --target calib_tools_lupdate
+if [ "$PLATFORM" != "windows" ]; then
+    print_section "Building lupdate..."
+    cmake --build "$BUILD_DIR" --target calib_tools_lupdate
+else
+    echo "Skipping lupdate on Windows (Qt DLLs not available in MSYS2)"
+fi
 
 print_section "Building project..."
 cmake --build "$BUILD_DIR" --parallel
