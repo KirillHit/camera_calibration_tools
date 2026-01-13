@@ -1310,11 +1310,6 @@ border: 1px solid gray;</string>
     </property>
     <addaction name="actionExportROS"/>
    </widget>
-   <widget class="QMenu" name="menuHelp">
-    <property name="title">
-     <string>Help</string>
-    </property>
-   </widget>
    <widget class="QMenu" name="menuSettings">
     <property name="title">
      <string>Settings</string>
@@ -1328,10 +1323,9 @@ border: 1px solid gray;</string>
     </widget>
     <addaction name="menuLanguage"/>
    </widget>
-   <addaction name="menuSettings"/>
    <addaction name="menuSource"/>
    <addaction name="menuExport"/>
-   <addaction name="menuHelp"/>
+   <addaction name="menuSettings"/>
   </widget>
   <action name="actionSelectFile">
    <property name="text">
@@ -1361,6 +1355,21 @@ border: 1px solid gray;</string>
   <action name="actionRussian">
    <property name="text">
     <string>Русский</string>
+   </property>
+  </action>
+  <action name="actionGeneral">
+   <property name="text">
+    <string>General</string>
+   </property>
+  </action>
+  <action name="actionLine_based">
+   <property name="text">
+    <string>Line-based</string>
+   </property>
+  </action>
+  <action name="actionChessboard">
+   <property name="text">
+    <string>Chessboard</string>
    </property>
   </action>
  </widget>

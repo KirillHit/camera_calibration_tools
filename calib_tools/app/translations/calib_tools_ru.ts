@@ -80,7 +80,7 @@
     <message>
         <location filename="../mainwindow.ui" line="14"/>
         <source>Camera Calibration Tools</source>
-        <translation>Инструменты калибровки камеры</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="40"/>
@@ -143,6 +143,7 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="619"/>
+        <location filename="../mainwindow.ui" line="1367"/>
         <source>Line-based</source>
         <translation>Выпрямление линий</translation>
     </message>
@@ -263,10 +264,11 @@
     <message>
         <location filename="../mainwindow.ui" line="748"/>
         <source>3. Check the result in the Manual tab and repeat if necessary</source>
-        <translation type="unfinished">3. Проверьте результат во вкладке &quot;Ручной режим&quot; и при необходимости повторите</translation>
+        <translation>3. Проверьте результат во вкладке &quot;Ручной режим&quot; и при необходимости повторите</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="764"/>
+        <location filename="../mainwindow.ui" line="1372"/>
         <source>Chessboard</source>
         <translation>Шахматная доска</translation>
     </message>
@@ -327,41 +329,45 @@
         <translation>Экспорт</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1315"/>
         <source>Help</source>
-        <translation>Помощь</translation>
+        <translation type="vanished">Помощь</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1320"/>
+        <location filename="../mainwindow.ui" line="1315"/>
         <source>Settings</source>
         <translation>Настройки</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1358"/>
+        <location filename="../mainwindow.ui" line="1352"/>
         <source>English</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1363"/>
+        <location filename="../mainwindow.ui" line="1357"/>
         <source>Русский</source>
         <translation></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="1362"/>
+        <source>General</source>
+        <translation>Общее</translation>
     </message>
     <message>
         <source>Import</source>
         <translation type="vanished">Импорт</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1338"/>
+        <location filename="../mainwindow.ui" line="1332"/>
         <source>File</source>
         <translation>Файл</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1343"/>
+        <location filename="../mainwindow.ui" line="1337"/>
         <source>Camera</source>
         <translation>Камера</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1348"/>
+        <location filename="../mainwindow.ui" line="1342"/>
         <source>Stream</source>
         <translation>Поток</translation>
     </message>
@@ -451,12 +457,12 @@
         <translation>Статус:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1324"/>
+        <location filename="../mainwindow.ui" line="1319"/>
         <source>Language</source>
         <translation>Язык</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1353"/>
+        <location filename="../mainwindow.ui" line="1347"/>
         <source>ROS</source>
         <translation>ROS</translation>
     </message>
