@@ -1,6 +1,7 @@
 # Camera Calibration Tools
 
-> [!Warning] This project is under development, and some features may be unstable.
+> [!Warning]
+> This project is under development, and some features may be unstable.
 
 A desktop application for simplifying camera calibration workflows, built with Qt.
 
@@ -38,7 +39,8 @@ Calibration is performed by optimizing camera parameters to straighten manually 
 
 Camera parameters are optimized using the [Ceres Solver](https://ceres-solver.org/).
 
-> [!Note] Accurate line annotation is critical for good calibration results.
+> [!Note]
+> Accurate line annotation is critical for good calibration results.
 
 <img src=".images/demo2.png" alt="demo" width="900"/>
 
