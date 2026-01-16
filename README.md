@@ -39,8 +39,8 @@ Calibration is performed by optimizing camera parameters to straighten manually 
 
 Camera parameters are optimized using the [Ceres Solver](https://ceres-solver.org/).
 
-> [!Note]
-> Accurate line annotation is critical for good calibration results.
+> [!Warning]
+> This method allows you to adjust parameters to remove distortion but **cannot determine the true focal length**. Due to focal shift, the resulting parameter values may differ from the expected ones.
 
 <img src=".images/demo2.png" alt="demo" width="900"/>
 
