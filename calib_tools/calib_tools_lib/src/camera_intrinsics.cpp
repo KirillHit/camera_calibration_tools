@@ -1,5 +1,6 @@
 #include "calib_tools_lib/camera_intrinsics.hpp"
 
+#include <cmath>
 #include <iomanip>
 #include <opencv2/calib3d.hpp>
 #include <opencv2/imgproc.hpp>
@@ -63,6 +64,26 @@ void CameraIntrinsics::set_dist_coeffs(const cv::Mat& D)
         p2 = D.at<double>(0, 3);
         k3 = D.at<double>(0, 4);
     }
+}
+
+void CameraIntrinsics::rescale_focal(double scale)
+{
+    if (!std::isfinite(scale) || scale <= 0.0)
+        throw std::invalid_argument("CameraIntrinsics: focal scale must be positive and finite");
+
+    const double scale2 = scale * scale;
+    const double scale4 = scale2 * scale2;
+    const double scale6 = scale4 * scale2;
+
+    fx *= scale;
+    fy *= scale;
+
+    k1 *= scale2;
+    k2 *= scale4;
+    k3 *= scale6;
+
+    p1 *= scale;
+    p2 *= scale;
 }
 
 void
@@ -134,6 +155,38 @@ std::string CameraIntrinsics::to_ros2_yaml_string(int image_width, int image_hei
     ss << "    data: [ " << fx << ", 0., " << cx << ", 0., "
        << "0., " << fy << ", " << cy << ", 0., "
        << "0., 0., 1., 0. ]\n";
+
+    return ss.str();
+}
+
+std::string CameraIntrinsics::to_ros2_json_string(int image_width, int image_height) const
+{
+    std::ostringstream ss;
+    ss << std::fixed << std::setprecision(6);
+
+    ss << "{";
+    ss << "\"image_width\":";
+    if (image_width >= 0)
+        ss << image_width;
+    else
+        ss << "\"<width>\"";
+
+    ss << ",\"image_height\":";
+    if (image_height >= 0)
+        ss << image_height;
+    else
+        ss << "\"<height>\"";
+
+    ss << ",\"camera_name\":\"<name>\"";
+    ss << ",\"camera_matrix\":{\"rows\":3,\"cols\":3,\"data\":["
+       << fx << ",0," << cx << ",0," << fy << "," << cy << ",0,0,1]}";
+    ss << ",\"distortion_model\":\"plumb_bob\"";
+    ss << ",\"distortion_coefficients\":{\"rows\":1,\"cols\":5,\"data\":["
+       << k1 << "," << k2 << "," << p1 << "," << p2 << "," << k3 << "]}";
+    ss << ",\"rectification_matrix\":{\"rows\":3,\"cols\":3,\"data\":[1,0,0,0,1,0,0,0,1]}";
+    ss << ",\"projection_matrix\":{\"rows\":3,\"cols\":4,\"data\":["
+       << fx << ",0," << cx << ",0,0," << fy << "," << cy << ",0,0,0,1,0]}";
+    ss << "}";
 
     return ss.str();
 }

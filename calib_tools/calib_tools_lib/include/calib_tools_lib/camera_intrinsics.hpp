@@ -47,6 +47,16 @@ struct CameraIntrinsics
     void set_dist_coeffs(const cv::Mat& D);
 
     /**
+     * @brief Rescales focal lengths isotropically and updates distortion coefficients so that
+     *        the pixel warp remains unchanged for the OpenCV radial-tangential model.
+     *
+     * @param scale Positive isotropic focal scale factor.
+     *
+     * @throws std::invalid_argument If scale is not finite or not positive.
+     */
+    void rescale_focal(double scale);
+
+    /**
      * @brief Computes rectify maps used for distortion correction.
      *
      * @param imageSize Size of the input image for which the maps are generated.
@@ -81,6 +91,9 @@ struct CameraIntrinsics
      * @return std::string  A YAML-formatted string containing the camera parameters.
      */
     std::string to_ros2_yaml_string(int image_width, int image_height) const;
+
+    /** @brief Generates a ROS2-compatible JSON string representing the camera intrinsic parameters. */
+    std::string to_ros2_json_string(int image_width, int image_height) const;
 };
 
 #endif

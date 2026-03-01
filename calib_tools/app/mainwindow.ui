@@ -239,6 +239,9 @@ font: 24pt;</string>
                 <height>0</height>
                </size>
               </property>
+              <property name="suffix">
+               <string> px</string>
+              </property>
               <property name="decimals">
                <number>1</number>
               </property>
@@ -267,6 +270,9 @@ font: 24pt;</string>
                 <height>0</height>
                </size>
               </property>
+              <property name="suffix">
+               <string> px</string>
+              </property>
               <property name="decimals">
                <number>1</number>
               </property>
@@ -290,13 +296,13 @@ font: 24pt;</string>
                </size>
               </property>
               <property name="decimals">
-               <number>4</number>
+               <number>5</number>
               </property>
               <property name="minimum">
-               <double>-2.000000000000000</double>
+               <double>-99999.000000000000000</double>
               </property>
               <property name="maximum">
-               <double>2.000000000000000</double>
+               <double>99999.000000000000000</double>
               </property>
               <property name="singleStep">
                <double>0.010000000000000</double>
@@ -323,6 +329,9 @@ font: 24pt;</string>
                 <width>100</width>
                 <height>0</height>
                </size>
+              </property>
+              <property name="suffix">
+               <string> px</string>
               </property>
               <property name="decimals">
                <number>1</number>
@@ -396,13 +405,13 @@ font: 24pt;</string>
                </size>
               </property>
               <property name="decimals">
-               <number>4</number>
+               <number>5</number>
               </property>
               <property name="minimum">
-               <double>-2.000000000000000</double>
+               <double>-99999.000000000000000</double>
               </property>
               <property name="maximum">
-               <double>2.000000000000000</double>
+               <double>99999.000000000000000</double>
               </property>
               <property name="singleStep">
                <double>0.010000000000000</double>
@@ -418,13 +427,13 @@ font: 24pt;</string>
                </size>
               </property>
               <property name="decimals">
-               <number>4</number>
+               <number>5</number>
               </property>
               <property name="minimum">
-               <double>-2.000000000000000</double>
+               <double>-99999.000000000000000</double>
               </property>
               <property name="maximum">
-               <double>2.000000000000000</double>
+               <double>99999.000000000000000</double>
               </property>
               <property name="singleStep">
                <double>0.010000000000000</double>
@@ -452,6 +461,9 @@ font: 24pt;</string>
                 <height>0</height>
                </size>
               </property>
+              <property name="suffix">
+               <string> px</string>
+              </property>
               <property name="decimals">
                <number>1</number>
               </property>
@@ -469,13 +481,13 @@ font: 24pt;</string>
                </size>
               </property>
               <property name="decimals">
-               <number>4</number>
+               <number>5</number>
               </property>
               <property name="minimum">
-               <double>-1.000000000000000</double>
+               <double>-99999.000000000000000</double>
               </property>
               <property name="maximum">
-               <double>1.000000000000000</double>
+               <double>99999.000000000000000</double>
               </property>
               <property name="singleStep">
                <double>0.001000000000000</double>
@@ -517,13 +529,13 @@ font: 24pt;</string>
                </size>
               </property>
               <property name="decimals">
-               <number>4</number>
+               <number>5</number>
               </property>
               <property name="minimum">
-               <double>-1.000000000000000</double>
+               <double>-99999.000000000000000</double>
               </property>
               <property name="maximum">
-               <double>1.000000000000000</double>
+               <double>99999.000000000000000</double>
               </property>
               <property name="singleStep">
                <double>0.001000000000000</double>
@@ -1310,6 +1322,12 @@ border: 1px solid gray;</string>
     </property>
     <addaction name="actionExportROS"/>
    </widget>
+   <widget class="QMenu" name="menuEdit">
+    <property name="title">
+     <string>Edit</string>
+    </property>
+    <addaction name="actionRescaleFocal"/>
+   </widget>
    <widget class="QMenu" name="menuSettings">
     <property name="title">
      <string>Settings</string>
@@ -1325,6 +1343,7 @@ border: 1px solid gray;</string>
    </widget>
    <addaction name="menuSource"/>
    <addaction name="menuExport"/>
+   <addaction name="menuEdit"/>
    <addaction name="menuSettings"/>
   </widget>
   <action name="actionSelectFile">
@@ -1355,6 +1374,11 @@ border: 1px solid gray;</string>
   <action name="actionRussian">
    <property name="text">
     <string>Русский</string>
+   </property>
+  </action>
+  <action name="actionRescaleFocal">
+   <property name="text">
+    <string>Rescale focal...</string>
    </property>
   </action>
   <action name="actionGeneral">

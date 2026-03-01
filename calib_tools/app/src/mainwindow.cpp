@@ -11,6 +11,7 @@
 #include <QListWidgetItem>
 #include <QMessageBox>
 #include <QPixmap>
+#include <cmath>
 #include <iostream>
 
 using namespace Qt::StringLiterals;
@@ -94,6 +95,7 @@ void MainWindow::setupConnections()
     bindSpin(ui_->manualCyBox, camera_intrinsics_.cy);
     bindSpin(ui_->manualK1Box, camera_intrinsics_.k1);
     bindSpin(ui_->manualK2Box, camera_intrinsics_.k2);
+    bindSpin(ui_->manualK3Box, camera_intrinsics_.k3);
     bindSpin(ui_->manualP1Box, camera_intrinsics_.p1);
     bindSpin(ui_->manualP2Box, camera_intrinsics_.p2);
     bindSpin(ui_->manualAlphaBox, camera_intrinsics_.alpha);
@@ -193,6 +195,8 @@ void MainWindow::setupConnections()
 
     // --- Export ---
     connect(ui_->actionExportROS, &QAction::triggered, this, &MainWindow::onActionExportROS);
+    connect(
+      ui_->actionRescaleFocal, &QAction::triggered, this, &MainWindow::onActionRescaleFocal);
 
     // --- Language change ---
     connect(ui_->actionRussian, &QAction::triggered, this, [this]() {
@@ -487,17 +491,34 @@ void MainWindow::onActionExportROS()
     const int w = current_frame_.cols > 0 ? current_frame_.cols : -1;
     const int h = current_frame_.rows > 0 ? current_frame_.rows : -1;
 
-    std::string yaml = camera_intrinsics_.to_ros2_yaml_string(w, h);
+    const QString yaml = QString::fromStdString(camera_intrinsics_.to_ros2_yaml_string(w, h));
+    const QString json = QString::fromStdString(camera_intrinsics_.to_ros2_json_string(w, h));
+
     QDialog dialog(this);
-    dialog.setWindowTitle(tr("Export ROS2 CameraInfo"));
+    dialog.setWindowTitle(tr("Export ROS"));
 
     QVBoxLayout* layout = new QVBoxLayout(&dialog);
 
-    QPlainTextEdit* textEdit = new QPlainTextEdit(&dialog);
-    textEdit->setPlainText(QString::fromStdString(yaml));
-    textEdit->setReadOnly(true);
-    textEdit->setMinimumSize(600, 400);
-    layout->addWidget(textEdit);
+    QLabel* yamlLabel = new QLabel(QStringLiteral("YAML"), &dialog);
+    layout->addWidget(yamlLabel);
+
+    QPlainTextEdit* yamlEdit = new QPlainTextEdit(&dialog);
+    yamlEdit->setPlainText(yaml);
+    yamlEdit->setReadOnly(true);
+    yamlEdit->setLineWrapMode(QPlainTextEdit::NoWrap);
+    yamlEdit->setMinimumHeight(220);
+    layout->addWidget(yamlEdit);
+
+    QLabel* jsonLabel = new QLabel(QStringLiteral("JSON"), &dialog);
+    layout->addWidget(jsonLabel);
+
+    QPlainTextEdit* jsonEdit = new QPlainTextEdit(&dialog);
+    jsonEdit->setPlainText(json);
+    jsonEdit->setReadOnly(true);
+    jsonEdit->setLineWrapMode(QPlainTextEdit::NoWrap);
+    jsonEdit->setMinimumHeight(120);
+    jsonEdit->setMinimumWidth(600);
+    layout->addWidget(jsonEdit);
 
     QPushButton* okButton = new QPushButton(tr("OK"), &dialog);
     okButton->setDefault(true);
@@ -506,6 +527,48 @@ void MainWindow::onActionExportROS()
     QObject::connect(okButton, &QPushButton::clicked, &dialog, &QDialog::accept);
 
     dialog.exec();
+}
+
+void MainWindow::onActionRescaleFocal()
+{
+    if (camera_intrinsics_.fx <= 0.0 || !std::isfinite(camera_intrinsics_.fx) ||
+        !std::isfinite(camera_intrinsics_.fy))
+    {
+        QMessageBox::warning(
+          this,
+          tr("Invalid intrinsics"),
+          tr("Current focal lengths must be finite and positive."));
+        return;
+    }
+
+    bool ok = false;
+    const double newFx = QInputDialog::getDouble(
+      this,
+      tr("Rescale focal"),
+      tr("New focal length fx' (pixels).\nfy will be scaled by the same factor."),
+      camera_intrinsics_.fx,
+      0.000001,
+      1e12,
+      6,
+      &ok);
+
+    if (!ok)
+        return;
+
+    const double scale = newFx / camera_intrinsics_.fx;
+    CameraIntrinsics updated = camera_intrinsics_;
+
+    try
+    {
+        updated.rescale_focal(scale);
+    }
+    catch (const std::exception& e)
+    {
+        QMessageBox::warning(this, tr("Invalid intrinsics"), QString::fromUtf8(e.what()));
+        return;
+    }
+
+    emit cameraIntrinsicsChanged(updated);
 }
 
 void MainWindow::onChangeLanguage(const QLocale& locale)
