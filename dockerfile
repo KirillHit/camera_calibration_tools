@@ -15,6 +15,7 @@ RUN apt update && apt install -y \
         qt6-tools-dev \
         # Packaging
         dpkg \
+        file \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /workspace

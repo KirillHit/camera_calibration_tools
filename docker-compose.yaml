@@ -5,8 +5,9 @@ services:
       dockerfile: dockerfile
     container_name: build_calib_tools
     volumes:
-      - ./calib_tools:/workspace/calib_tools:ro
+      - ./calib_tools:/workspace/calib_tools:rw
       - ./scripts:/workspace/scripts:ro
+      - ./LICENSE:/workspace/LICENSE:ro
       - ./artifacts:/workspace/artifacts:rw
     working_dir: /workspace
     command: ./scripts/build.sh
