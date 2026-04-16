@@ -94,7 +94,3 @@ This project relies on the following libraries:
 * [Qt](https://www.qt.io/) – cross-platform C++ GUI framework
 * [OpenCV](https://opencv.org/) – computer vision and image processing
 * [Ceres Solver](https://ceres-solver.org/) – nonlinear least squares optimization
-
-## Acknowledgements
-
-This project was carried out with the support of and for the needs of [TASURT](https://tasurt.ru/).
