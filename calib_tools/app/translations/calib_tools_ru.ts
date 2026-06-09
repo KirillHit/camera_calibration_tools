@@ -143,7 +143,7 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="631"/>
-        <location filename="../mainwindow.ui" line="1391"/>
+        <location filename="../mainwindow.ui" line="1397"/>
         <source>Line-based</source>
         <translation>Выпрямление линий</translation>
     </message>
@@ -276,7 +276,7 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="776"/>
-        <location filename="../mainwindow.ui" line="1396"/>
+        <location filename="../mainwindow.ui" line="1402"/>
         <source>Chessboard</source>
         <translation>Шахматная доска</translation>
     </message>
@@ -333,59 +333,60 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1321"/>
-        <source>Export</source>
-        <translation>Экспорт</translation>
+        <source>Configuration</source>
+        <translation>Конфигурация</translation>
     </message>
     <message>
         <source>Help</source>
         <translation type="vanished">Помощь</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1327"/>
+        <location filename="../mainwindow.ui" line="1328"/>
         <source>Edit</source>
         <translation>Правка</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1333"/>
+        <location filename="../mainwindow.ui" line="1334"/>
         <source>Settings</source>
         <translation>Настройки</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1381"/>
+        <location filename="../mainwindow.ui" line="1382"/>
         <source>Rescale focal...</source>
         <translation>Пересчитать фокус...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1371"/>
+        <location filename="../mainwindow.ui" line="1372"/>
         <source>English</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1376"/>
+        <location filename="../mainwindow.ui" line="1377"/>
         <source>Русский</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1386"/>
+        <location filename="../mainwindow.ui" line="1392"/>
         <source>General</source>
         <translation>Общее</translation>
     </message>
     <message>
+        <location filename="../src/mainwindow.cpp" line="555"/>
         <source>Import</source>
-        <translation type="vanished">Импорт</translation>
+        <translation>Импорт</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1351"/>
+        <location filename="../mainwindow.ui" line="1352"/>
         <source>File</source>
         <translation>Файл</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1356"/>
+        <location filename="../mainwindow.ui" line="1357"/>
         <source>Camera</source>
         <translation>Камера</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1361"/>
+        <location filename="../mainwindow.ui" line="1362"/>
         <source>Stream</source>
         <translation>Поток</translation>
     </message>
@@ -395,23 +396,23 @@
         <translation>Инфо: </translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="539"/>
-        <location filename="../src/mainwindow.cpp" line="567"/>
+        <location filename="../src/mainwindow.cpp" line="593"/>
+        <location filename="../src/mainwindow.cpp" line="621"/>
         <source>Invalid intrinsics</source>
         <translation>Некорректные параметры камеры</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="540"/>
+        <location filename="../src/mainwindow.cpp" line="594"/>
         <source>Current focal lengths must be finite and positive.</source>
         <translation>Текущие фокусные расстояния должны быть конечными и положительными.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="547"/>
+        <location filename="../src/mainwindow.cpp" line="601"/>
         <source>Rescale focal</source>
         <translation>Пересчёт фокуса</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="548"/>
+        <location filename="../src/mainwindow.cpp" line="602"/>
         <source>New focal length fx&apos; (pixels).
 fy will be scaled by the same factor.</source>
         <translation>Новое фокусное расстояние fx&apos; (пиксели).
@@ -498,75 +499,107 @@ fy будет масштабирован с тем же коэффициенто
         <translation>Статус:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1337"/>
+        <location filename="../mainwindow.ui" line="1338"/>
         <source>Language</source>
         <translation>Язык</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1366"/>
         <source>ROS</source>
-        <translation>ROS</translation>
+        <translation type="vanished">ROS</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="129"/>
+        <location filename="../src/mainwindow.cpp" line="133"/>
         <source>Line %1</source>
         <translation>Линия %1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="179"/>
+        <location filename="../src/mainwindow.cpp" line="183"/>
         <source>Calibrating...</source>
         <translation>Калибруется...</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="276"/>
+        <location filename="../src/mainwindow.cpp" line="280"/>
         <source>Error in undistort_image:</source>
         <translation>Ошибка в undistort_image:</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="301"/>
-        <location filename="../src/mainwindow.cpp" line="468"/>
+        <location filename="../src/mainwindow.cpp" line="305"/>
+        <location filename="../src/mainwindow.cpp" line="472"/>
         <source>Error</source>
         <translation>Ошибка</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="308"/>
+        <location filename="../src/mainwindow.cpp" line="312"/>
         <source>Select image or video</source>
         <translation>Выберите изображение или видео</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="310"/>
+        <location filename="../src/mainwindow.cpp" line="314"/>
         <source>Media files (*.png *.jpg *.jpeg *.bmp *.avi *.mp4 *.mkv);;All files (*.*)</source>
         <translation>Медиа файлы (*.png *.jpg *.jpeg *.bmp *.avi *.mp4 *.mkv);;Все файлы (*.*)</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="476"/>
+        <location filename="../src/mainwindow.cpp" line="480"/>
         <source>Good</source>
         <translation>Хорошо</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="478"/>
+        <location filename="../src/mainwindow.cpp" line="482"/>
         <source>Medium</source>
         <translation>Средне</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="480"/>
+        <location filename="../src/mainwindow.cpp" line="484"/>
         <source>Poor</source>
         <translation>Плохо</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="484"/>
+        <location filename="../src/mainwindow.cpp" line="488"/>
         <source>Success</source>
         <translation>Успешно</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="498"/>
+        <location filename="../mainwindow.ui" line="1367"/>
+        <location filename="../src/mainwindow.cpp" line="502"/>
         <source>Export ROS</source>
         <translation>Экспорт ROS</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="523"/>
+        <location filename="../src/mainwindow.cpp" line="527"/>
         <source>OK</source>
         <translation>ОК</translation>
+    </message>
+    <message>
+        <source>Import ROS...</source>
+        <translation type="vanished">Импорт ROS...</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="1387"/>
+        <location filename="../src/mainwindow.cpp" line="539"/>
+        <source>Import ROS</source>
+        <translation>Импорт ROS</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="543"/>
+        <source>Paste ROS YAML or JSON:</source>
+        <translation>Вставьте ROS YAML или JSON:</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="559"/>
+        <source>Cancel</source>
+        <translation>Отмена</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="575"/>
+        <source>Import failed</source>
+        <translation>Ошибка импорта</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="576"/>
+        <source>Could not import camera intrinsics:
+%1</source>
+        <translation>Не удалось импортировать параметры камеры:
+%1</translation>
     </message>
 </context>
 <context>

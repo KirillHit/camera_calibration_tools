@@ -6,11 +6,15 @@
 #include <QDebug>
 #include <QDialog>
 #include <QFileDialog>
+#include <QHBoxLayout>
 #include <QImage>
 #include <QInputDialog>
 #include <QListWidgetItem>
 #include <QMessageBox>
 #include <QPixmap>
+#include <QPlainTextEdit>
+#include <QPushButton>
+#include <QVBoxLayout>
 #include <cmath>
 #include <iostream>
 
@@ -195,8 +199,8 @@ void MainWindow::setupConnections()
 
     // --- Export ---
     connect(ui_->actionExportROS, &QAction::triggered, this, &MainWindow::onActionExportROS);
-    connect(
-      ui_->actionRescaleFocal, &QAction::triggered, this, &MainWindow::onActionRescaleFocal);
+    connect(ui_->actionImportROS, &QAction::triggered, this, &MainWindow::onActionImportROS);
+    connect(ui_->actionRescaleFocal, &QAction::triggered, this, &MainWindow::onActionRescaleFocal);
 
     // --- Language change ---
     connect(ui_->actionRussian, &QAction::triggered, this, [this]() {
@@ -529,15 +533,65 @@ void MainWindow::onActionExportROS()
     dialog.exec();
 }
 
+void MainWindow::onActionImportROS()
+{
+    QDialog dialog(this);
+    dialog.setWindowTitle(tr("Import ROS"));
+
+    QVBoxLayout* layout = new QVBoxLayout(&dialog);
+
+    QLabel* inputLabel = new QLabel(tr("Paste ROS YAML or JSON:"), &dialog);
+    layout->addWidget(inputLabel);
+
+    QPlainTextEdit* inputEdit = new QPlainTextEdit(&dialog);
+    inputEdit->setLineWrapMode(QPlainTextEdit::NoWrap);
+    inputEdit->setMinimumHeight(320);
+    inputEdit->setMinimumWidth(600);
+    layout->addWidget(inputEdit);
+
+    QHBoxLayout* buttonsLayout = new QHBoxLayout();
+    buttonsLayout->addStretch();
+
+    QPushButton* importButton = new QPushButton(tr("Import"), &dialog);
+    importButton->setDefault(true);
+    buttonsLayout->addWidget(importButton);
+
+    QPushButton* cancelButton = new QPushButton(tr("Cancel"), &dialog);
+    buttonsLayout->addWidget(cancelButton);
+
+    layout->addLayout(buttonsLayout);
+
+    QObject::connect(cancelButton, &QPushButton::clicked, &dialog, &QDialog::reject);
+    QObject::connect(importButton, &QPushButton::clicked, &dialog, [this, &dialog, inputEdit]() {
+        CameraIntrinsics imported;
+        try
+        {
+            imported = CameraIntrinsics::from_ros2_string(inputEdit->toPlainText().toStdString());
+        }
+        catch (const std::exception& e)
+        {
+            QMessageBox::warning(
+              &dialog,
+              tr("Import failed"),
+              tr("Could not import camera intrinsics:\n%1").arg(QString::fromUtf8(e.what())));
+            return;
+        }
+
+        emit cameraIntrinsicsChanged(imported);
+        dialog.accept();
+    });
+
+    dialog.exec();
+}
+
 void MainWindow::onActionRescaleFocal()
 {
     if (camera_intrinsics_.fx <= 0.0 || !std::isfinite(camera_intrinsics_.fx) ||
         !std::isfinite(camera_intrinsics_.fy))
     {
-        QMessageBox::warning(
-          this,
-          tr("Invalid intrinsics"),
-          tr("Current focal lengths must be finite and positive."));
+        QMessageBox::warning(this,
+                             tr("Invalid intrinsics"),
+                             tr("Current focal lengths must be finite and positive."));
         return;
     }
 
