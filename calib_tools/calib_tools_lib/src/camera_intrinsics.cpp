@@ -1,9 +1,12 @@
 #include "calib_tools_lib/camera_intrinsics.hpp"
 
+#include "calib_tools_lib/camera_intrinsics_io.hpp"
+
+#include <array>
 #include <cmath>
-#include <iomanip>
 #include <opencv2/calib3d.hpp>
 #include <opencv2/imgproc.hpp>
+#include <stdexcept>
 
 void CameraIntrinsics::validate() const
 {
@@ -122,71 +125,21 @@ void CameraIntrinsics::from_array(const std::array<double, 9>& array)
 
 std::string CameraIntrinsics::to_ros2_yaml_string(int image_width, int image_height) const
 {
-    std::ostringstream ss;
-    ss << std::fixed << std::setprecision(6);
-
-    ss << "camera_info:\n";
-    ss << "  image_width: "
-       << ((image_width >= 0) ? std::to_string(image_width) : std::string("<width>")) << "\n";
-    ss << "  image_height: "
-       << ((image_height >= 0) ? std::to_string(image_height) : std::string("<height>")) << "\n";
-    ss << "  camera_name: <name>\n";
-    ss << "  camera_matrix:\n";
-    ss << "    rows: 3\n";
-    ss << "    cols: 3\n";
-    ss << "    data: [ " << fx << ", 0., " << cx << ", "
-       << "0., " << fy << ", " << cy << ", "
-       << "0., 0., 1. ]\n";
-
-    ss << "  distortion_model: plumb_bob\n";
-    ss << "  distortion_coefficients:\n";
-    ss << "    rows: 1\n";
-    ss << "    cols: 5\n";
-    ss << "    data: [ " << k1 << ", " << k2 << ", " << p1 << ", " << p2 << ", " << k3 << " ]\n";
-
-    ss << "  rectification_matrix:\n";
-    ss << "    rows: 3\n";
-    ss << "    cols: 3\n";
-    ss << "    data: [1, 0, 0, 0, 1, 0, 0, 0, 1]\n";
-
-    ss << "  projection_matrix:\n";
-    ss << "    rows: 3\n";
-    ss << "    cols: 4\n";
-    ss << "    data: [ " << fx << ", 0., " << cx << ", 0., "
-       << "0., " << fy << ", " << cy << ", 0., "
-       << "0., 0., 1., 0. ]\n";
-
-    return ss.str();
+    return calib_tools_lib::camera_intrinsics_io::to_ros2_yaml_string(
+      *this,
+      image_width,
+      image_height);
 }
 
 std::string CameraIntrinsics::to_ros2_json_string(int image_width, int image_height) const
 {
-    std::ostringstream ss;
-    ss << std::fixed << std::setprecision(6);
+    return calib_tools_lib::camera_intrinsics_io::to_ros2_json_string(
+      *this,
+      image_width,
+      image_height);
+}
 
-    ss << "{";
-    ss << "\"image_width\":";
-    if (image_width >= 0)
-        ss << image_width;
-    else
-        ss << "\"<width>\"";
-
-    ss << ",\"image_height\":";
-    if (image_height >= 0)
-        ss << image_height;
-    else
-        ss << "\"<height>\"";
-
-    ss << ",\"camera_name\":\"<name>\"";
-    ss << ",\"camera_matrix\":{\"rows\":3,\"cols\":3,\"data\":["
-       << fx << ",0," << cx << ",0," << fy << "," << cy << ",0,0,1]}";
-    ss << ",\"distortion_model\":\"plumb_bob\"";
-    ss << ",\"distortion_coefficients\":{\"rows\":1,\"cols\":5,\"data\":["
-       << k1 << "," << k2 << "," << p1 << "," << p2 << "," << k3 << "]}";
-    ss << ",\"rectification_matrix\":{\"rows\":3,\"cols\":3,\"data\":[1,0,0,0,1,0,0,0,1]}";
-    ss << ",\"projection_matrix\":{\"rows\":3,\"cols\":4,\"data\":["
-       << fx << ",0," << cx << ",0,0," << fy << "," << cy << ",0,0,0,1,0]}";
-    ss << "}";
-
-    return ss.str();
+CameraIntrinsics CameraIntrinsics::from_ros2_string(const std::string& text)
+{
+    return calib_tools_lib::camera_intrinsics_io::from_ros2_string(text);
 }

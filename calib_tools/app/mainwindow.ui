@@ -1316,11 +1316,12 @@ border: 1px solid gray;</string>
     <addaction name="actionSelectCam"/>
     <addaction name="actionSelectStream"/>
    </widget>
-   <widget class="QMenu" name="menuExport">
+   <widget class="QMenu" name="menuConfiguration">
     <property name="title">
-     <string>Export</string>
+     <string>Configuration</string>
     </property>
     <addaction name="actionExportROS"/>
+    <addaction name="actionImportROS"/>
    </widget>
    <widget class="QMenu" name="menuEdit">
     <property name="title">
@@ -1342,7 +1343,7 @@ border: 1px solid gray;</string>
     <addaction name="menuLanguage"/>
    </widget>
    <addaction name="menuSource"/>
-   <addaction name="menuExport"/>
+   <addaction name="menuConfiguration"/>
    <addaction name="menuEdit"/>
    <addaction name="menuSettings"/>
   </widget>
@@ -1363,7 +1364,7 @@ border: 1px solid gray;</string>
   </action>
   <action name="actionExportROS">
    <property name="text">
-    <string>ROS</string>
+    <string>Export ROS</string>
    </property>
   </action>
   <action name="actionEnglish">
@@ -1379,6 +1380,11 @@ border: 1px solid gray;</string>
   <action name="actionRescaleFocal">
    <property name="text">
     <string>Rescale focal...</string>
+   </property>
+  </action>
+  <action name="actionImportROS">
+   <property name="text">
+    <string>Import ROS</string>
    </property>
   </action>
   <action name="actionGeneral">

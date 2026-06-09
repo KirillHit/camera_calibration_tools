@@ -1,7 +1,9 @@
 #ifndef CAMERA_INTRINSICS_HPP
 #define CAMERA_INTRINSICS_HPP
 
+#include <array>
 #include <opencv2/core.hpp>
+#include <string>
 
 
 /** @brief Structure representing intrinsic parameters of a pinhole camera model 
@@ -94,6 +96,13 @@ struct CameraIntrinsics
 
     /** @brief Generates a ROS2-compatible JSON string representing the camera intrinsic parameters. */
     std::string to_ros2_json_string(int image_width, int image_height) const;
+
+    /**
+     * @brief Loads intrinsic parameters from a ROS2 CameraInfo YAML or JSON string.
+     *
+     * @throws std::invalid_argument If the text does not contain supported camera data.
+     */
+    static CameraIntrinsics from_ros2_string(const std::string& text);
 };
 
 #endif

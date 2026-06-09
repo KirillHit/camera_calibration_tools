@@ -73,6 +73,7 @@ public slots:
 
     /** @brief Slot to export camera intrinsics to ROS2 CameraInfo format. */
     void onActionExportROS();
+    void onActionImportROS();
     void onActionRescaleFocal();
 
     void onChangeLanguage(const QLocale& locale);
