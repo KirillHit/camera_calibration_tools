@@ -1,8 +1,5 @@
 # Camera Calibration Tools
 
-> [!Warning]
-> This project is under development, and some features may be unstable.
-
 A desktop application for simplifying camera calibration workflows, built with Qt.
 
 <img src=".images/demo1.png" alt="demo" width="900"/>
